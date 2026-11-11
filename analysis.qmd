@@ -55,7 +55,15 @@ accuracy <- joined |>
     .groups = "drop"
   )
 
-print(accuracy)
+knitr::kable(
+  accuracy |>
+    mutate(
+      mean_error = scales::number(mean_error, accuracy = 0.001),
+      snapshots = scales::comma(snapshots)
+    ),
+  col.names = c("Time to resolution", "Mean absolute error", "Snapshots"),
+  caption = "Forecast accuracy by time horizon"
+)
 
 ggplot(accuracy, aes(x = time_bucket, y = mean_error, group = 1)) +
   geom_line() +
@@ -87,7 +95,16 @@ calibration <- joined |>
     .groups = "drop"
   )
 
-print(calibration)
+knitr::kable(
+  calibration |>
+    mutate(
+      predicted_probability = scales::percent(predicted_probability, accuracy = 0.1),
+      actual_rate = scales::percent(actual_rate, accuracy = 0.1),
+      n = scales::comma(n)
+    ),
+  col.names = c("Probability bin", "Mean predicted probability", "Actual YES rate", "Markets"),
+  caption = "Final-day forecast calibration by probability bin"
+)
 
 ggplot(calibration, aes(x = predicted_probability, y = actual_rate, size = n)) +
   geom_abline(slope = 1, intercept = 0, linetype = "dashed") +

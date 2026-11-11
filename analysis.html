@@ -77,15 +77,44 @@ ul.task-list li input[type="checkbox"] {
 
 
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 5 × 3
-  time_bucket       mean_error snapshots
-  &lt;ord&gt;                  &lt;dbl&gt;     &lt;int&gt;
-1 More than 90 days     0.399       5239
-2 30 to 90 days         0.311      15588
-3 7 to 30 days          0.279      16467
-4 1 to 7 days           0.180       5600
-5 Final day             0.0896       800</code></pre>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Forecast accuracy by time horizon</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Time to resolution</th>
+<th style="text-align: left;">Mean absolute error</th>
+<th style="text-align: left;">Snapshots</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">More than 90 days</td>
+<td style="text-align: left;">0.399</td>
+<td style="text-align: left;">5,239</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">30 to 90 days</td>
+<td style="text-align: left;">0.311</td>
+<td style="text-align: left;">15,588</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">7 to 30 days</td>
+<td style="text-align: left;">0.279</td>
+<td style="text-align: left;">16,467</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1 to 7 days</td>
+<td style="text-align: left;">0.180</td>
+<td style="text-align: left;">5,600</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Final day</td>
+<td style="text-align: left;">0.090</td>
+<td style="text-align: left;">800</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="cell-output-display">
 <div>
@@ -108,20 +137,80 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 10 × 4
-   probability_bin predicted_probability actual_rate     n
-   &lt;fct&gt;                           &lt;dbl&gt;       &lt;dbl&gt; &lt;int&gt;
- 1 [0,0.1]                        0.0219     0.00939   426
- 2 (0.1,0.2]                      0.147      0.0714     28
- 3 (0.2,0.3]                      0.247      0.25       20
- 4 (0.3,0.4]                      0.349      0.0556     18
- 5 (0.4,0.5]                      0.450      0.55       20
- 6 (0.5,0.6]                      0.544      0.65       20
- 7 (0.6,0.7]                      0.643      0.611      18
- 8 (0.7,0.8]                      0.748      0.818      11
- 9 (0.8,0.9]                      0.855      1          18
-10 (0.9,1]                        0.982      0.995     221</code></pre>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Final-day forecast calibration by probability bin</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Probability bin</th>
+<th style="text-align: left;">Mean predicted probability</th>
+<th style="text-align: left;">Actual YES rate</th>
+<th style="text-align: left;">Markets</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">[0,0.1]</td>
+<td style="text-align: left;">2.2%</td>
+<td style="text-align: left;">0.9%</td>
+<td style="text-align: left;">426</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">(0.1,0.2]</td>
+<td style="text-align: left;">14.7%</td>
+<td style="text-align: left;">7.1%</td>
+<td style="text-align: left;">28</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">(0.2,0.3]</td>
+<td style="text-align: left;">24.7%</td>
+<td style="text-align: left;">25.0%</td>
+<td style="text-align: left;">20</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">(0.3,0.4]</td>
+<td style="text-align: left;">34.9%</td>
+<td style="text-align: left;">5.6%</td>
+<td style="text-align: left;">18</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">(0.4,0.5]</td>
+<td style="text-align: left;">45.0%</td>
+<td style="text-align: left;">55.0%</td>
+<td style="text-align: left;">20</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">(0.5,0.6]</td>
+<td style="text-align: left;">54.4%</td>
+<td style="text-align: left;">65.0%</td>
+<td style="text-align: left;">20</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">(0.6,0.7]</td>
+<td style="text-align: left;">64.3%</td>
+<td style="text-align: left;">61.1%</td>
+<td style="text-align: left;">18</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">(0.7,0.8]</td>
+<td style="text-align: left;">74.8%</td>
+<td style="text-align: left;">81.8%</td>
+<td style="text-align: left;">11</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">(0.8,0.9]</td>
+<td style="text-align: left;">85.5%</td>
+<td style="text-align: left;">100.0%</td>
+<td style="text-align: left;">18</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">(0.9,1]</td>
+<td style="text-align: left;">98.2%</td>
+<td style="text-align: left;">99.5%</td>
+<td style="text-align: left;">221</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="cell-output-display">
 <div>
